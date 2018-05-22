@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?><!DOCTYPE nta PUBLIC '-//Uppaal Team//DTD Flat System 1.1//EN' 'http://www.it.uu.se/research/group/darts/uppaal/flat-1_1.dtd'><nta><declaration>// Place global declarations here.
+clock time;
+clock t1;
+clock t2;
+clock t3;
+clock t4;
+
+chan get_centre, free_centre;</declaration><template><name x="5" y="5">Signal</name><declaration>// Place local declarations here.
+</declaration><location id="id0" x="-80" y="-104" color="#ffff00"><name x="-90" y="-134">yellow</name></location><location id="id1" x="-320" y="-248" color="#00ff00"><name x="-330" y="-278">green</name></location><location id="id2" x="-536" y="-104" color="#ff0000"><name x="-546" y="-134">red</name></location><init ref="id2"/><transition><source ref="id1"/><target ref="id2"/><label kind="guard" x="-488" y="-206">time &gt; 5</label><label kind="synchronisation" x="-464" y="-248">free_centre!</label></transition><transition><source ref="id0"/><target ref="id1"/><label kind="guard" x="-200" y="-200">time &gt; 1</label></transition><transition><source ref="id2"/><target ref="id0"/><label kind="guard" x="-368" y="-72">time &gt; 15</label><label kind="synchronisation" x="-368" y="-48">get_centre!</label></transition></template><template><name>G11</name><location id="id3" x="0" y="0"></location><init ref="id3"/></template><template><name>Nust</name><location id="id4" x="0" y="0"></location><init ref="id4"/></template><template><name>ZeroPoint</name><location id="id5" x="0" y="0"></location><init ref="id5"/></template><template><name>Airport</name><location id="id6" x="-280" y="120"></location><init ref="id6"/></template><template><name>Centre</name><location id="id7" x="80" y="104"><name x="70" y="74">Busy</name></location><location id="id8" x="-224" y="88"><name x="-234" y="58">Free</name></location><init ref="id8"/><transition><source ref="id8"/><target ref="id7"/><label kind="synchronisation" x="-104" y="208">get_centre?</label><label kind="assignment" x="-132" y="96">time := 0</label><nail x="-80" y="192"/></transition><transition><source ref="id7"/><target ref="id8"/><label kind="synchronisation" x="-92" y="-96">free_centre?</label><label kind="assignment" x="-120" y="40">time := 0</label><nail x="-60" y="-56"/></transition></template><system>// Place template instantiations here.
+//Process = Template();
+G11_traffic = Signal();
+Nust_traffic = Signal();
+ZeroPoint_traffic = Signal();
+Airport_traffic = Signal();
+// List one or more processes to be composed into a system.
+system G11_traffic,Nust_traffic,ZeroPoint_traffic,Airport_traffic,  Centre;
+</system></nta>
